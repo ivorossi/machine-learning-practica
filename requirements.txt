@@ -2,3 +2,6 @@ tensorflow~=2.18.0
 torch~=2.5.1
 torchvision~=0.20.1
 pillow~=11.0.0
+requests~=2.32.3
+config~=0.5.1
+opencv-python~=4.10.0.84
