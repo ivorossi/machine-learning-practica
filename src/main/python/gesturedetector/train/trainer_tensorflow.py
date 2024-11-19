@@ -1,11 +1,8 @@
-import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras import layers, models
-from tensorflow.keras.applications import MobileNetV2
-import os
+from keras.src.applications.mobilenet_v2 import MobileNetV2
+from keras.src.legacy.preprocessing.image import ImageDataGenerator
+from tensorflow.python.keras import models
+from tensorflow.python.layers import layers
 
-
-# Parámetros
 img_size = (128, 128)
 batch_size = 32
 
