@@ -9,3 +9,4 @@ dlib~=19.24.6
 mediapipe~=0.10.18
 keras~=3.6.0
 numpy~=1.26.4
+deepface~=0.0.93
