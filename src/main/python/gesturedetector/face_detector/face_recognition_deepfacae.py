@@ -1,5 +1,13 @@
 from deepface import DeepFace
 
-# Analizar emociones, género, edad
-result = DeepFace.analyze(img_path="imagen.jpg", actions=['emotion', 'age', 'gender'])
-print(result)
+
+def analyze_image(image):
+    return DeepFace.analyze(image, actions=['emotion', 'age', 'gender'])
+
+
+if __name__ == '__main__':
+    import cv2
+    example = cv2.imread("imagen.jpg")
+    example = cv2.cvtColor(example, cv2.COLOR_BGR2RGB)
+    result = analyze_image(example)
+    print(result)
