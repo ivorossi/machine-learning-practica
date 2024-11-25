@@ -1,6 +1,5 @@
 import sqlite3
 
-
 conn = sqlite3.connect("src/main/resources/my_db.db")
 cursor = conn.cursor()
 
@@ -14,23 +13,19 @@ CREATE TABLE IF NOT EXISTS usuarios (
 )
 ''')
 
-
-
 print("Base de datos y tabla creadas exitosamente.")
 
 cursor.execute('''
 INSERT INTO usuarios (nombre, edad, email)
 VALUES (?, ?, ?)
-''', ("Juan Pérez", 30, "juan.perez@example.com"))
+''', ("Juan Péreez", 30, "juaan.perez@example.com"))
 
 conn.commit()
-
 
 cursor.execute('SELECT * FROM usuarios')
 usuarios = cursor.fetchall()  # Obtener todos los resultados
 for usuario in usuarios:
     print(usuario)
-
 
 # Cerrar el cursor y la conexión
 cursor.close()
