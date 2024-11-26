@@ -1,10 +1,11 @@
 import dlib
 import cv2
 import numpy as np
+from src.main.python.gesturedetector.config.configurations import Config
 
 detector = dlib.get_frontal_face_detector()
-shape_predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
-face_rec_model = dlib.face_recognition_model_v1("dlib_face_recognition_resnet_model_v1.dat")
+shape_predictor = dlib.shape_predictor(Config.get_config()["shape_predictor_dlib_path"])
+face_rec_model = dlib.face_recognition_model_v1(Config.get_config()["face_recognition_model_dlib_path"])
 
 
 def get_face_descriptor(image):

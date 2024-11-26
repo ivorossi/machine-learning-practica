@@ -1,0 +1,16 @@
+[my_configurations]
+db_name = "my_db"
+resources_path_dir = "src/main/resources"
+shape_predictor_dlib_path = ""
+face_recognition_model_dlib_path = ""
+haar_cascade_frontal_face_cv_path = ""
+dataset_train_path = ""
+dataset_validation_path = ""
+mercadolibre_api_URL = "https://api.mercadolibre.com"
+
+[other_configurations]
+resources_path_dir = ""
+db_name = ""
+shape_predictor_dlib_path = ""
+face_recognition_model_dlib_path = ""
+haar_cascade_frontal_face_cv_path = ""

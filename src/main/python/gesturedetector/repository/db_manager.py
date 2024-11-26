@@ -1,32 +1,20 @@
-import sqlite3
+from databse import SQLiteConnection
 
-conn = sqlite3.connect("src/main/resources/my_db.db")
-cursor = conn.cursor()
+db = SQLiteConnection("mi_base_de_datos.db")
 
-# Crear tabla
-cursor.execute('''
-CREATE TABLE IF NOT EXISTS usuarios (
+
+schema = """
+CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT NOT NULL,
-    edad INTEGER NOT NULL,
-    email TEXT UNIQUE NOT NULL
-)
-''')
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE
+);
+"""
+db.initialize_schema(schema)
 
-print("Base de datos y tabla creadas exitosamente.")
+# Ejecutar una consulta
+db.execute_non_query("INSERT INTO users (name, email) VALUES (?, ?)", ("Ivo2", "ivo2@example.com"))
+result = db.execute_query("SELECT * FROM users")
+print(result)
 
-cursor.execute('''
-INSERT INTO usuarios (nombre, edad, email)
-VALUES (?, ?, ?)
-''', ("Juan Péreez", 30, "juaan.perez@example.com"))
 
-conn.commit()
-
-cursor.execute('SELECT * FROM usuarios')
-usuarios = cursor.fetchall()  # Obtener todos los resultados
-for usuario in usuarios:
-    print(usuario)
-
-# Cerrar el cursor y la conexión
-cursor.close()
-conn.close()
