@@ -1,7 +1,13 @@
-from databse import SQLiteConnection
 
-db = SQLiteConnection("mi_base_de_datos.db")
+from src.main.python.gesturedetector.config.configurations import Config
+import os
+from src.main.python.gesturedetector.repository.databse import SQLiteConnection
 
+if __name__ == '__main__':
+    resources_path = Config.get_config().get('resources_path_dir')
+    db_name = Config.get_config().get('db_name')
+    db_path = os.path.join(resources_path, db_name)
+    db = SQLiteConnection(db_path)
 
 schema = """
 CREATE TABLE IF NOT EXISTS users (
