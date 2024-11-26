@@ -1,6 +1,5 @@
 import os
 import requests
-from config import BASE_URL
 
 
 def fetch_category_items(site_id, category_id, limit=10):
