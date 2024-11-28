@@ -1,6 +1,7 @@
 import cv2
+from src.main.python.gesturedetector.config.configurations import Config
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier(Config.get_config()['haar_cascade_frontal_face_cv_path'])
 
 
 def detect_face_in_image(image):

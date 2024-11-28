@@ -1,5 +1,8 @@
 import os
 import requests
+from src.main.python.gesturedetector.config.configurations import Config
+
+BASE_URL = Config.get_config()['mercadolibre_api_URL']
 
 
 def fetch_category_items(site_id, category_id, limit=10):
