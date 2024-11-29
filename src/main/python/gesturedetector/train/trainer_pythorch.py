@@ -36,7 +36,6 @@ class GlassesDataset(Dataset):
         return image, label
 
 
-# Definir transformaciones (ajusta según tus preferencias)
 transform = transforms.Compose([
     transforms.Resize((128, 128)),
     transforms.ToTensor(),
