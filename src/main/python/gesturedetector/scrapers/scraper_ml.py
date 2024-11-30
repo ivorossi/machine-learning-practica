@@ -32,7 +32,7 @@ def download_images_by_category(site_id, category_id, limit=10):
     os.makedirs(folder, exist_ok=True)
 
     for item in items:
-        image_url = item.get("thumbnail")  # URL de la imagen de miniatura
+        image_url = item.get("thumbnail")
         if image_url:
             image_name = f"{item['id']}.jpg"
             download_image(image_url, folder, image_name)

@@ -8,6 +8,7 @@ dataset_train_path = ""
 dataset_validation_path = ""
 dataset = ""
 mercadolibre_api_URL = "https://api.mercadolibre.com"
+download_folder = './'
 
 [other_configurations]
 resources_path_dir = ""
