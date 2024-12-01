@@ -17,8 +17,17 @@ def fetch(url, retries=3, delay=5):
     raise Timeout(f"Failed to connect after {retries} attempts")
 
 
-def fetch_category(site_id, category_id, limit=10):
-    url = f"{BASE_URL}/sites/{site_id}/search?category={category_id}&limit={limit}"
+def fetch_category(site_id, category_id, limit=10, offset=0):
+    url = f"{BASE_URL}/sites/{site_id}/search?category={category_id}&limit={limit}&offset={offset}"
+    response = fetch(url)
+    if response.status_code == 200:
+        return response.json().get("results", [])
+    else:
+        return []
+
+
+def fetch_query(site_id, query, limit=50, offset=0):
+    url = f"{BASE_URL}/sites/{site_id}/search?q={query}&limit={limit}&offset={offset}"
     response = fetch(url)
     if response.status_code == 200:
         return response.json().get("results", [])
@@ -44,7 +53,7 @@ def fetch_image(image_id):
 
 
 def download_images_by_category(site_id, category_id, limit=1):
-    items = fetch_category(site_id, category_id, limit)
+    items = fetch_query(site_id, category_id, limit)
     for item in items:
         item_id = item.get("id")
         pictures = fetch_item(item_id)
@@ -53,3 +62,4 @@ def download_images_by_category(site_id, category_id, limit=1):
             image_url = fetch_image(image_id)
             image_bytes = download_image(image_url)
             save_image(image_bytes, image_id)
+            print(image_id)

@@ -8,6 +8,6 @@ if __name__ == "__main__":
     folder = os.path.join(download_path)
     os.makedirs(folder, exist_ok=True)
     site_id = "MLA"
-    category_id = "MLA5725"
+    category_id = "muñeco"
     limit = 5
     download_images_by_category(site_id, category_id, limit)
