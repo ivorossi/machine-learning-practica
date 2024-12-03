@@ -1,12 +1,14 @@
 [my_configurations]
 db_name = "my_db.db"
 resources_path_dir = "src/main/resources"
-shape_predictor_dlib_path = ""
-face_recognition_model_dlib_path = ""
-haar_cascade_frontal_face_cv_path = ""
+shape_predictor_dlib_path = "src/main/resources/models/shape_predictor_68_face_landmarks.dat"
+face_recognition_model_dlib_path = "src/main/resources/models/dlib_face_recognition_resnet_model_v1.dat"
+haar_cascade_frontal_face_cv_path = "src/main/resources/models/haarcascade_frontalcatface.xml"
 dataset_train_path = ""
 dataset_validation_path = ""
+dataset = ""
 mercadolibre_api_URL = "https://api.mercadolibre.com"
+download_folder = './images'
 
 [other_configurations]
 resources_path_dir = ""
@@ -14,3 +16,6 @@ db_name = ""
 shape_predictor_dlib_path = ""
 face_recognition_model_dlib_path = ""
 haar_cascade_frontal_face_cv_path = ""
+dataset_train_path = ""
+dataset_validation_path = ""
+mercadolibre_api_URL = "https://api.mercadolibre.com"

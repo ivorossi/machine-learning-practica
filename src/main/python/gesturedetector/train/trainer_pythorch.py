@@ -6,6 +6,8 @@ from torchvision import transforms, models
 from PIL import Image
 import os
 
+from src.main.python.gesturedetector.config.configurations import Config
+
 
 class GlassesDataset(Dataset):
     def __init__(self, root_dir, transform=None):
@@ -34,20 +36,19 @@ class GlassesDataset(Dataset):
         return image, label
 
 
-# Definir transformaciones (ajusta según tus preferencias)
 transform = transforms.Compose([
     transforms.Resize((128, 128)),
     transforms.ToTensor(),
     transforms.Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
 ])
 
-# Cargar el dataset
-train_dataset = GlassesDataset(root_dir="ruta/a/tu/dataset", transform=transform)
+dataset_path = Config.get_config()['dataset']
+train_dataset = GlassesDataset(root_dir=dataset_path, transform=transform)
 train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True)
 
 
 model = models.resnet18(pretrained=True)
-model.fc = nn.Linear(model.fc.in_features, 2)  # 2 clases: con lentes y sin lentes
+model.fc = nn.Linear(model.fc.in_features, 2)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = model.to(device)
 
