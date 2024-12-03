@@ -1,12 +1,11 @@
 import cv2
+
 from src.main.python.gesturedetector.config.configurations import Config
 
 face_cascade = cv2.CascadeClassifier(Config.get_config()['haar_cascade_frontal_face_cv_path'])
 
 
 def detect_face_in_image(image):
-    if image is None:
-        return False
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = face_cascade.detectMultiScale(
         gray,

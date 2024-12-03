@@ -1,6 +1,9 @@
 import requests
 from src.main.python.gesturedetector.config.configurations import Config
-from src.main.python.gesturedetector.utils.image import save_image, download_image
+from src.main.python.gesturedetector.face_detector.face_rcognition_dlib import get_face_descriptor
+from src.main.python.gesturedetector.face_detector.face_recognition_mediapipe import detect_face
+from src.main.python.gesturedetector.face_detector.face_recognition_opencv import detect_face_in_image
+from src.main.python.gesturedetector.utils.image import save_image, download_image, to_cv2_image
 from requests.exceptions import Timeout
 import time
 
@@ -61,5 +64,13 @@ def download_images_by_category(site_id, category_id, limit=1):
             image_id = picture.get("id")
             image_url = fetch_image(image_id)
             image_bytes = download_image(image_url)
-            save_image(image_bytes, image_id)
+            if image_bytes:
+                image = to_cv2_image(image_bytes)
+                if detect_face_in_image(image):
+                    save_image(image_bytes, f"{image_id}_cv2")
+                if detect_face(image):
+                    save_image(image_bytes, f"{image_id}_mediapipe")
+                if get_face_descriptor(image):
+                    save_image(image_bytes, f"{image_id}_dlib")
+
             print(image_id)

@@ -11,12 +11,12 @@ face_rec_model = dlib.face_recognition_model_v1(Config.get_config()["face_recogn
 def get_face_descriptor(image):
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     faces = detector(gray)
-    descriptors = []
-    for face in faces:
-        shape = shape_predictor(gray, face)
-        descriptor = np.array(face_rec_model.compute_face_descriptor(image, shape))
-        descriptors.append(descriptor)
-    return descriptors
+    # descriptors = []
+    # for face in faces:
+    #    shape = shape_predictor(gray, face)
+    #    descriptor = np.array(face_rec_model.compute_face_descriptor(image, shape))
+    #    descriptors.append(descriptor)
+    return len(faces) > 0
 
 
 def compare_faces(descriptor1, descriptor2, threshold=0.6):

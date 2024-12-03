@@ -1,5 +1,8 @@
 import os.path
 from io import BytesIO
+
+import cv2
+import numpy as np
 import requests
 import imghdr
 from PIL import Image
@@ -40,3 +43,8 @@ def save_image(image_bytes, name):
         file_path = os.path.join(download_path, f"{name}.{get_image_format(image_bytes)}")
         with open(file_path, "wb") as file:
             file.write(image_bytes)
+
+
+def to_cv2_image(image_bytes):
+    np_arr = np.frombuffer(image_bytes, np.uint8)
+    return cv2.imdecode(np_arr, cv2.IMREAD_COLOR)
